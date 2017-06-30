@@ -6,20 +6,20 @@
 
 
 
-<div class="demo">
-    <br> <br> <br>
-    <input id="btnSubmit" type="submit" value="Release" />
-    <br> <br> <br>
-</div>
+@*<div class="demo">
+        <br> <br> <br>
+        <input id="btnSubmit" type="submit" value="Release" />
+        <br> <br> <br>
+    </div>
 
 
-<script>
-    $(document).ready(function() { 
-        $("#btnSubmit").click(function(){
-            alert("button");
+    <script>
+        $(document).ready(function() {
+            $("#btnSubmit").click(function(){
+                alert("button");
+            });
         });
-    });
-</script>
+    </script>*@
 
 
 
@@ -32,7 +32,7 @@
         @*<th>costMonth</th>*@
         <th>cNumber</th>
         <th>sAmount</th>
-        @*<th>total</th>*@
+        <th>total</th>
     </tr>
 
     @{
@@ -52,23 +52,19 @@
                 <th>@a.supplyAmount</th>
                 @if (a.supplyCNumber == "3")
                 {
-                    <tr><th></th>
-                        <th></th>
-                        <th></th>
-                        <th>Cost total = @a.costAmount1</th>
-                        <th></th>
-                        <th>Supply total = @totalCategory</th>
-                    </tr>
+                    <th>Cost total = @a.costAmount1</th>
+                    <th>Supply total = @totalCategory</th>
                 }
             </tr>
-            totalSupply += totalCategory;
-            totalCost += a.costAmount1;
-            if(a.supplyCNumber == "3")
+            if (a.supplyCNumber == "3")
             {
+                totalSupply += totalCategory;
+                totalCost += a.costAmount1;
                 totalCategory = 0;
             }
         }
-        <tr>
+        <tr class="table-bordered">
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -80,15 +76,6 @@
 
     }
 </table>
-
-
-
-
-
-
-
-
-
 
 
 <script>
@@ -125,128 +112,3 @@
         $('#report .deleted').remove();
     });
 </script>
-
-
-
-<div class="container">
-    <div class="row">   
-    </div>
-</div>
-
-
-
-
-
-
-
-
-@*<table class="table-bordered" cellpadding="0" cellspacing="0">
-    <TR>
-        <TH rowspan="2">regions
-        <TH rowspan="2">products
-        <TH rowspan="2">statements
-        <TH colspan="3">January
-        <TH colspan="3">February
-        <TH colspan="3">March
-        <TH colspan="3">April
-        <TH colspan="3">May
-        <TH colspan="3">June
-        <TH colspan="3">July
-        <TH colspan="3">August
-        <TH colspan="3">Sentyabr'
-        <TH colspan="3">Oktyabr'
-        <TH colspan="3">Noyabr'
-        <TH colspan="3">Dekabr'
-    <TR>
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-        <TH>cat1
-        <TH>cat2
-        <TH>cat3
-            @foreach (var a in ViewBag.Regions)
-            {
-            <TR>
-                <TH rowspan="7">@a.region1
-            </TR>
-            foreach (var b in ViewBag.Products)
-            {
-            <TR>
-            <TH rowspan="2">@b.productName
-            <TH>Supply
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-            <TD>407
-            <TD>408
-            <TD>400
-        </TR>
-         <TR><TH>cost<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500</TR>          
-             }
-
-                break;
-            }
-        </table>*@
-
-
-
