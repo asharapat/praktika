@@ -1,0 +1,252 @@
+﻿@model IEnumerable<taskTwo.Models.DB>
+
+@{
+
+}
+
+
+
+<div class="demo">
+    <br> <br> <br>
+    <input id="btnSubmit" type="submit" value="Release" />
+    <br> <br> <br>
+</div>
+
+
+<script>
+    $(document).ready(function() { 
+        $("#btnSubmit").click(function(){
+            alert("button");
+        });
+    });
+</script>
+
+
+
+<table id="report" class="table" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>regions</th>
+        <th>products</th>
+        <th>sMonth</th>
+        <th>cost</th>
+        @*<th>costMonth</th>*@
+        <th>cNumber</th>
+        <th>sAmount</th>
+        @*<th>total</th>*@
+    </tr>
+
+    @{
+        int totalCategory = 0;
+        int totalCost = 0;
+        int totalSupply = 0;
+        foreach (var a in Model)
+        {
+            totalCategory += a.supplyAmount;
+            <tr>
+                <th>@a.supplyRegion</th>
+                <th>@a.supplyPName</th>
+                <th>@a.supplyMonth</th>
+                <th>@a.costAmount1</th>
+                @*<th>@a.costMonth1</th>*@
+                <th>@a.supplyCNumber</th>
+                <th>@a.supplyAmount</th>
+                @if (a.supplyCNumber == "3")
+                {
+                    <tr><th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Cost total = @a.costAmount1</th>
+                        <th></th>
+                        <th>Supply total = @totalCategory</th>
+                    </tr>
+                }
+            </tr>
+            totalSupply += totalCategory;
+            totalCost += a.costAmount1;
+            if(a.supplyCNumber == "3")
+            {
+                totalCategory = 0;
+            }
+        }
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Annual cost total = @totalCost</th>
+            <th>Annual supply total = @totalSupply</th>
+        </tr>
+
+    }
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(function () {
+        //Created By: Brij Mohan
+        //Website: http://techbrij.com
+        function groupTable($rows, startIndex, total) {
+            if (total === 0) {
+                return;
+            }
+            var i, currentIndex = startIndex, count = 1, lst = [];
+            var tds = $rows.find('th:eq(' + currentIndex + ')');
+            var ctrl = $(tds[0]);
+            lst.push($rows[0]);
+            for (i = 1; i <= tds.length; i++) {
+                if (ctrl.text() == $(tds[i]).text()) {
+                    count++;
+                    $(tds[i]).addClass('deleted');
+                    lst.push($rows[i]);
+                }
+                else {
+                    if (count > 1) {
+                        ctrl.attr('rowspan', count);
+                        groupTable($(lst), startIndex + 1, total - 1)
+                    }
+                    count = 1;
+                    lst = [];
+                    ctrl = $(tds[i]);
+                    lst.push($rows[i]);
+                }
+            }
+        }
+        groupTable($('#report tr:has(th)'), 0, 4);
+        $('#report .deleted').remove();
+    });
+</script>
+
+
+
+<div class="container">
+    <div class="row">   
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@*<table class="table-bordered" cellpadding="0" cellspacing="0">
+    <TR>
+        <TH rowspan="2">regions
+        <TH rowspan="2">products
+        <TH rowspan="2">statements
+        <TH colspan="3">January
+        <TH colspan="3">February
+        <TH colspan="3">March
+        <TH colspan="3">April
+        <TH colspan="3">May
+        <TH colspan="3">June
+        <TH colspan="3">July
+        <TH colspan="3">August
+        <TH colspan="3">Sentyabr'
+        <TH colspan="3">Oktyabr'
+        <TH colspan="3">Noyabr'
+        <TH colspan="3">Dekabr'
+    <TR>
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+        <TH>cat1
+        <TH>cat2
+        <TH>cat3
+            @foreach (var a in ViewBag.Regions)
+            {
+            <TR>
+                <TH rowspan="7">@a.region1
+            </TR>
+            foreach (var b in ViewBag.Products)
+            {
+            <TR>
+            <TH rowspan="2">@b.productName
+            <TH>Supply
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+            <TD>407
+            <TD>408
+            <TD>400
+        </TR>
+         <TR><TH>cost<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500<TD colspan="3">500</TR>          
+             }
+
+                break;
+            }
+        </table>*@
+
+
+
